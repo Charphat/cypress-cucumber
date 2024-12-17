@@ -1,0 +1,25 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ชื่อ Step                                 |  คำสั่ง                                                                                  |   เงื่อนไขการใช้คำสั่ง
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+เปิดหน้า cypress                          | npx cypress open
+
+เข้าหน้าล็อกอิน                             | Given User visits the login page "https://uatgosaas.app/login"                         | ให้แก้ url จะเทส prod ก็แก้เป็น prod  
+ช่องกรอก email pass                      | When Input email: "ให้ใส่อีเมล์" and password: "ให้ใส่รหัสผ่าน"                                | ให้แก้อีเมล์ และรหัสผ่านเป็นของตัวเอง จะได้ไม่ชนกันเวลาใช้งาน
+กดปุ่ม login                              | And User click the login button                                                        | 
+เข้าร้านค้า                                | And Confirm and go in store                                                            | ตอนนี้มันเข้าได้ที่ร้านค้าที่เห็นอันแรก จับไว้ที่ตัวนั้น
+
+เข้าไปที่หน้าคำสั่งซื้อ                         | Given Click on top menu Order and sub menu Order                                       |
+คลิกปุ่มสร้างคำสั่งซื้อ                         | Then Click on the Create Order button|
+ที่อยู่ (กระจายอัตโนมัติ)                      | And Input customer data on address auto spread: "ข้อมูลลูกค้า"                             | ให้เอาข้อมูลลูกค้ากอปมาเป็นก้อนใส่เข้าไปได้เลย แทนคำว่า "ข้อมูลลูกค้า"                                
+เลือกการชำระเงิน                          | And Choose payment for this order: 'COD'                                               | จะคีย์ออเดอร์แบบไหนพิมพ์เลย COD หรือ Bank
+ใส่ ยอดโอน                               | And If Bank Tranfers have to amount: '1000'                                            | ต้องมียอดโอนเอง คิดมาก่อนว่าจะราคาเท่าไหร่
+ยืนยันสลิปเลยไหม                           | And Confirm payment for bank tranfers                                                  | ถ้าจะยืนยันสลิปเลยใช้คำสั่งนี้ต่อจากกรอกยอดโอน
+toggle ปิดแนบสลิป                         | And Close toggle for bank tranfers                                                     | กดปิดปุ่มตรงโอนเงินไม่ต้องแนบสลิป หรือใส่ยอดโอน
+ยืนยันออเดอร์ COD                          | And Mark confirm order for COD                                                         | ถ้าจะยืนยันออเดอร์ ของ COD เลยก็ใช้คำสั่งนี้ต่อจากเลือกการชำระเงิน
+คลิกปุ่มเลือกสินค้า/โปรโมชั่น                   | And Add product in order                                                               | ตอนนี้เลือกสินค้าได้จากช่องนี้ก่อน มันง่าย ถ้าช่องค้นหาจะทำเพิ่มอีกที
+เลือกประเภทสินค้า                          | And Choose product to order, Product type: 'Simple'                                    | มาตรฐานพิมพ์ 'Simple' ตัวเลือกพิมพ์ 'Config'
+จำนวนรายการสินค้ามาตรฐาน                  | And List of products in this order, Simple: '1 item'                                   | ตอนนี้ Simple มีได้แค่ 2 ตัว 
+จำนวนราการสินค้าตัวเลือก                    | And List of products in this order, Config: '3 item' Prod                              | ถ้าตัวเลือกได้สูงสุด 5 ตัว ให้เปลี่ยน Prod หรือ Uat ด้วย
+คลิกปุ่ม "บันทึก" ออเดอร์                     | And Click Save button for create order                                                 | ปุ่มบันทึกออเดอร์ และตรวจสอบโทสต์ ว่าสร้างเสร็จไหม ถ้า error ก็ไม่ผ่านเทส
+
+ให้รีเฟรชหน้าจอที่อยู่ตอนนี้                     | And Refresh on page before test                                                        | ใช้ได้ทุกที แค่รีเฟรชหน้าจอเฉยๆ
