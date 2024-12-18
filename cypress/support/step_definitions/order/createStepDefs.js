@@ -152,6 +152,10 @@ Then('[Click] Prod: Config product {string}', (item) => {
   cy.wait(2000);
 });
 
+Then('[Click] Delete product', () => {
+  cy.get('.fa-minus-circle').click();
+});
+
 Then('[Click] Save', () => {
   cy.get('[data-test="btn-save-order"]').click();
   cy.wait(2000);

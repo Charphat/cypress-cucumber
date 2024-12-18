@@ -6,6 +6,11 @@ Given('[Click] Top menu Order and Sub menu Order', () => {
     cy.wait(4000);
 });
 
+Given('[Order detail] link: {string}', (url) => {
+  cy.visit(url);
+  cy.wait(3000);
+});
+
 Given('[Refresh] On page before test', () => {
     cy.reload();
 });
