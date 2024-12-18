@@ -13,7 +13,7 @@ Feature: Create Orders
       #คลิกที่ปุ่ม "สร้างคำสั่งซื้อ"
       Then  [Click] Create Order
       #พิมพ์ข้อมูลลูกค้าลงในช่อง "ที่อยู่(กระจายที่อยู่)"
-      Then  [Input] Address Auto spread: "ชื่อ โจ	0994977678	วัชระ สัมฤทธิเวช	88 หมู่12	บางปะกง	บางปะกง	ฉะเชิงเทรา	24130"
+      Then  [Input] Address Auto spread: Customer Row 1
       #เลือกวิธีการชำระเงิน 'COD' หรือ 'Bank'
       And   [Click] Payment: 'COD'
       #ติ๊ก "ยืนยันการจัดส่ง"

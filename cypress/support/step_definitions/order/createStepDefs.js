@@ -1,12 +1,17 @@
 import { Given, When, Then, And } from '@badeball/cypress-cucumber-preprocessor';
+import customer from '../../../fixtures/customerData';
 
 Given('[Click] Create Order', () => {
   cy.get('[data-test="btn-create-order"]').click();
   cy.wait(2000);
 });
 
-When('[Input] Address Auto spread: {string}', (customer) => {
-  cy.get('[data-test="address-text-area"]').should('be.visible').type(customer, { delay: 50 });
+When('[Input] Address Auto spread: Customer Row {int}', (rowCustomer) => {
+  const customerData = customer[rowCustomer - 1];
+  if (!customerData) {
+    throw new Error(`No customer data found for row ${rowCustomer}`);
+  }
+  cy.get('[data-test="address-text-area"]').should('be.visible').type(customerData, { delay: 50 });
   cy.wait(1500);
   cy.get('[data-test="spread-it"]').click();
   cy.wait(2500);
