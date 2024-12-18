@@ -26,10 +26,10 @@ Then('[Click] Payment: {string}', (paymentMethod) => {
   cy.wait(1500);
 });
 
-Then('If Bank Tranfers have to amount: {string}', (amount) => {
-  cy.get('[data-test="order-amount"]').type(amount);
-  cy.wait(1500);
-});
+// Then('If Bank Tranfers have to amount: {string}', (amount) => {
+//   cy.get('[data-test="order-amount"]').type(amount);
+//   cy.wait(1500);
+// });
 
 Then('[Click] Mark As Confirm Payment', () => {
   cy.get('[data-test="checkbox-confirm-payment"]').click();

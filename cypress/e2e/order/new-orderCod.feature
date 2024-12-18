@@ -1,4 +1,4 @@
-Feature: Create Orders
+Feature: Check after deploy : Create Orders COD 
 
     #ส่วนนี้เป็นขั้นตอนเข้าระบบ ให้เปลี่ยนลิ้งค์ อีเมล์ รหัสผ่าน ถ้ามีอัปเดต จะทำเทสใหม่ให้ copy ไปทั้งหมดในชุด
     Background:
@@ -7,7 +7,7 @@ Feature: Create Orders
       When Store Name: 'Playground of QA'
 
     #สร้างออเดอร์ ลูกค้าใหม่ COD 2 รายการสินค้า ยืนยันออเดอร์
-    Scenario: Create a new order COD, 2 item, mark confirm
+    Scenario: Create a new order COD, 4 item
       #คลิกเมนูคำสั่งซื้อ
       Given [Click] Top menu Order and Sub menu Order
       #คลิกที่ปุ่ม "สร้างคำสั่งซื้อ"
@@ -17,7 +17,7 @@ Feature: Create Orders
       #เลือกวิธีการชำระเงิน 'COD' หรือ 'Bank'
       And   [Click] Payment: 'COD'
       #ติ๊ก "ยืนยันการจัดส่ง"
-      And   [Click] Mark As Confirm Order 
+      # And   [Click] Mark As Confirm Order 
       #คลิกปุ่ม "เพิ่มสินค้า/โปรโมชั่น"
       And   [Click] Selete Products Promotions
       #เลือกสินค้าต้องเลือกก่อนจะเอาสินค้าประเภทไหน 'Simple' หรือ 'Config'
