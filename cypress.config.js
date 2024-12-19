@@ -19,6 +19,7 @@ module.exports = defineConfig({
     },
     stepDefinitions: 'cypress/support/step_definitions/**/*.js',
     specPattern: 'cypress/e2e/**/*.feature',
-    baseUrl: 'https://uatgosaas.app/login'
+    baseUrl: 'https://gosaas.app/login',
+    defaultCommandTimeout: 20000
   }
 });

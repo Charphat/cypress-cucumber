@@ -35,7 +35,7 @@ When('[Click] LOST', () => {
 })
 
 When('[Check] toast fail', () => {
-    cy.get('.toast', { timeout: 10000 }).should('be.visible');
+    cy.get('.toast').should('be.visible');
     cy.get('.toast-message').should('be.visible').then(($toast) => {
         const toastMessage = $toast.text();
         expect(toastMessage).to.match(/รายการต้องน้อยกว่า 5 รายการ/);

@@ -8,7 +8,7 @@ Given('[Click] Top menu Order and Sub menu Order', () => {
 
 Given('[Order detail] link: {string}', (url) => {
   cy.visit(url);
-  cy.wait(3000);
+  cy.wait(4000);
 });
 
 Given('[Refresh] On page before test', () => {

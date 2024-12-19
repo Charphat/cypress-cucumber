@@ -15,6 +15,6 @@ Scenario: Edit order by not change anything
     When    [Click] More action and 'Edit'
     And     [Click] Delete product
     And     [Click] Selete Products Promotions
-    And     [Click] Prod: Product 'Simple' Tab
-    And     [Click] Prod: Simple product '1 item'
+    And     [Click] Product 'Simple' Tab
+    And     [Click] Simple product '1 item'
     And     [Click] Save
