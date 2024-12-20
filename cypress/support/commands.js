@@ -1,25 +1,28 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('login', (email, password, storeName, domain) => {
+    cy.session([email, password], () => {
+      cy.visit('https://gosaas.app/login');
+      cy.get(':nth-child(1) > .form-control')
+        .should('be.visible')
+        .type(email, { delay: 100 });
+      cy.get(':nth-child(2) > .form-control')
+        .should('be.visible')
+        .type(password, { delay: 100 });
+      cy.get('#LoginForm > :nth-child(4) > .btn')
+        .should('be.visible')
+        .click();
+      cy.wait(2000);
+
+    cy.contains(storeName).should('be.visible').click();
+    cy.get('.swal2-popup').should('be.visible');
+    cy.get('.swal2-confirm').should('be.visible').click();
+    cy.wait(2000);
+    cy.get('body').then(($body) => {
+        if ($body.find('.swal2-popup').length > 0) {
+          cy.get('.swal2-cancel').should('be.visible').click({ force: true });
+          cy.wait(2000);
+        }
+      });
+    });
+    cy.visit(domain);
+    cy.wait(2000);
+  });

@@ -17,6 +17,14 @@ When('[Input] Address Auto spread: Customer Row {int}', (rowCustomer) => {
   cy.wait(2500);
 });
 
+Given('[Click] Search customer data, customer name: {string}', (customer) => {
+  cy.get('[data-test="serch-customer"] > :nth-child(2) > .select2 > .selection > .select2-selection > .select2-selection__rendered > .select2-search > .select2-search__field').click();
+  cy.get('[data-test="serch-customer"] > :nth-child(2) > .select2 > .selection > .select2-selection > .select2-selection__rendered > .select2-search > .select2-search__field').type(customer);
+  cy.wait(2000);
+  cy.get('.select2-results__option--highlighted').click();
+  cy.wait(2000);
+});
+
 Then('[Click] Payment: {string}', (paymentMethod) => {
   if (paymentMethod === 'COD') {
     cy.get('[data-test="method-COD"]').click();
@@ -24,6 +32,52 @@ Then('[Click] Payment: {string}', (paymentMethod) => {
     cy.get('[data-test="method-Bank Transfer"]').click();
   }
   cy.wait(1500);
+});
+
+Then('[Click] Select product by search: {string}', (searchProduct) => {
+  cy.get('[data-test="search-product"] > div > .select2 > .selection > .select2-selection > #select2--container').scrollIntoView().should('be.visible').click();
+  cy.wait(2000);
+  cy.get('.select2-dropdown > .select2-search > .select2-search__field').type(searchProduct);
+  cy.wait(2000);
+  cy.get('.select2-results__option').click();
+});
+
+// Then('[Click] Create Selete Product {string} Tab {string} and Product {string}', (productType, configIndex, item) => {
+//   cy.get('[data-test="btn-add-promotion"]').click(), cy.wait(2000);
+//   if (productType === 'Simple') {
+//     cy.get('[data-test="product-Simple"]').click(), cy.wait(2000);
+//   } else if (productType === 'Config') {
+//     cy.get('[data-test="product-Config"]').click(), cy.wait(2000);
+
+//     const index = parseInt(configIndex.split(' ')[1]) - 1;
+//     cy.get(`[item-index="${index}"] > .vuetable-td-component-checkbox > .align-items-center`).click();
+//     cy.wait(2000);
+//   }
+
+//   const itemCount = parseInt(item.split(' ')[0]);
+
+//   for (let i = 0; i < itemCount; i++) {
+//     cy.get(`#table_product_promotion > .vuetable-wrapper > .dataTable > .vuetable-body-wrapper > .vuetable > .vuetable-body > [item-index="${i}"] > .vuetable-td-component-checkbox > input`).click();
+    
+//   }
+//   console.log('itemCount', itemCount);
+//   cy.wait(1000);
+//   cy.contains('button', 'เลือกสินค้า').click();
+//   cy.wait(2000);
+// });
+
+Then('[Click] Delete product', () => {
+  cy.get('body').then(($body) => {
+    if ($body.find('.fa-minus-circle').length === 1) {
+      cy.get('.fa-minus-circle').click();
+    } else {
+      cy.get('.fa-minus-circle').each(($el, index, $list) => {
+        if (index === 0) {
+          cy.wrap($el).click();
+        }
+      });
+    }
+  });
 });
 
 // Then('If Bank Tranfers have to amount: {string}', (amount) => {
@@ -44,65 +98,6 @@ Then('[Click] Toggle Add payment', () => {
 Then('[Click] Mark As Confirm Order', () => {
   cy.get('[data-test="checkbox-confirm-cod"]').click();
   cy.wait(1500);
-});
-
-Then('[Click] Selete Products Promotions', () => {
-  cy.get('[data-test="btn-add-promotion"]').click();
-  cy.wait(2000);
-});
-
-Then('[Click] Product {string} Tab', (productType) => {
-  if (productType === 'Simple') {
-    cy.get('[data-test="product-Simple"]').click();
-    cy.wait(2000);
-  } else if (productType === 'Config') {
-    cy.get('[data-test="product-Config"]').click(), cy.wait(2000);
-    cy.get('[item-index="0"] > .vuetable-td-component-checkbox > .align-items-center').click(), cy.wait(2000); //dropdown product config
-  }
-});
-
-Then('[Click] Simple product {string}', (item) => {
-  if (item === '1 item') {
-    cy.get('#table_product_promotion > .vuetable-wrapper > .dataTable > .vuetable-body-wrapper > .vuetable > .vuetable-body > [item-index="0"] > .vuetable-td-component-checkbox > input').click();
-  } else if (item === '2 item') {
-    cy.get('#table_product_promotion > .vuetable-wrapper > .dataTable > .vuetable-body-wrapper > .vuetable > .vuetable-body > [item-index="0"] > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_product_promotion > .vuetable-wrapper > .dataTable > .vuetable-body-wrapper > .vuetable > .vuetable-body > [item-index="1"] > .vuetable-td-component-checkbox > input').click();
-  }
-  cy.wait(1500);
-  cy.contains('button', 'เลือกสินค้า').click();
-  // cy.get('.text-center > .btn-primary').click();
-  cy.wait(2000);
-});
-
-Then('[Click] Config product {string}', (item) => {
-  if (item === '1 item') {
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(1) > .vuetable-td-component-checkbox > input').click();
-  } else if (item === '2 item') {
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(1) > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(2) > .vuetable-td-component-checkbox > input').click();
-  } else if (item === '3 item') {
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(1) > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(2) > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(3) > .vuetable-td-component-checkbox > input').click();
-  } else if (item === '4 item') {
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(1) > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(2) > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(3) > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(4) > .vuetable-td-component-checkbox > input').click();
-  } else if (item === '4 item') {
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(1) > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(2) > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(3) > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(4) > .vuetable-td-component-checkbox > input').click();
-    cy.get('#table_row_product2 > .vuetable > .vuetable-body > :nth-child(5) > .vuetable-td-component-checkbox > input').click();
-  }
-  cy.wait(1500);
-  cy.get('.text-center > .btn-primary').click();
-  cy.wait(2000);
-});
-
-Then('[Click] Delete product', () => {
-  cy.get('.fa-minus-circle').click();
 });
 
 Then('[Click] Save', () => {
