@@ -1,8 +1,7 @@
 Feature: Check after deploy : Edit Order
 
 Background:
-    Given   User visits the login page 'https://gosaas.app/login'
-    When    [Input] Email: 'charphat.ntcp@gmail.com' Password: 'S^83#b@v' Store Name: 'Playground of QA' Domain: 'playgroundofqa.gosaas.app'
+    Given [Input] Url: 'https://gosaas.app/login' Email: 'charphat.ntcp@gmail.com' Password: 'S^83#b@v' Store Name: 'Playground of QA' Domain: 'playgroundofqa.gosaas.app'
 
 Scenario: Edit order by not change anything
     Given   [Order detail] link: 'https://playgroundofqa.gosaas.app/app/orders/70'

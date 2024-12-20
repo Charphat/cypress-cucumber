@@ -1,6 +1,6 @@
-Cypress.Commands.add('login', (email, password, storeName, domain) => {
-    cy.session([email, password], () => {
-      cy.visit('https://gosaas.app/login');
+Cypress.Commands.add('login', (url,email, password, storeName, domain) => {
+    cy.session([url, email, password], () => {
+      cy.visit(url);
       cy.get(':nth-child(1) > .form-control')
         .should('be.visible')
         .type(email, { delay: 100 });

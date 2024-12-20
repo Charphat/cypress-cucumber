@@ -24,6 +24,6 @@ Given('User visits the login page {string}', (url) => {
   cy.visit(url);
 });
 
-When('[Input] Email: {string} Password: {string} Store Name: {string} Domain: {string}', (email, password, storeName, domain) => {
-  cy.login(email, password, storeName, domain);
+When('[Input] Url: {string} Email: {string} Password: {string} Store Name: {string} Domain: {string}', (url, email, password, storeName, domain) => {
+  cy.login(url, email, password, storeName, domain);
 });
