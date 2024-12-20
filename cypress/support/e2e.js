@@ -25,8 +25,6 @@ Cypress.on('log:added', (options) => {
     }
   });
 
-// cypress/support/e2e.js หรือ cypress/support/index.js
-
 beforeEach(() => {
     cy.intercept('POST', 'https://www.google-analytics.com/**', { log: false });
       // ปิด log ของ XHR request ทั้งหมด
